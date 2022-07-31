@@ -12,4 +12,4 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use(routes);
 
-app.listen(3333, () => console.log('running'));
+app.listen(3333, () => console.log('>>>>> running...'));
