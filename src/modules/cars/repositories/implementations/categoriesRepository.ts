@@ -1,4 +1,4 @@
-import { Category } from '../../model/category';
+import { Category } from '../../entities/category';
 import {
   ICategoryRepository,
   ICreateCategoryDTO,
@@ -7,6 +7,7 @@ import {
 class CategoriesRepository implements ICategoryRepository {
   private categories: Category[] = [];
 
+  // eslint-disable-next-line no-use-before-define
   private static INSTANCE: CategoriesRepository;
 
   private constructor() {
