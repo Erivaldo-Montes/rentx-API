@@ -4,9 +4,9 @@ import { ImportCategoriesUseCase } from './importCategoriesUseCase';
 
 class ImportCategoriesController {
   constructor(private importCategoriesUsecase: ImportCategoriesUseCase) {}
-  handle(request: Request, response: Response): Response {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { file } = request;
-    this.importCategoriesUsecase.execute(file);
+    await this.importCategoriesUsecase.execute(file);
     return response.status(200).send();
   }
 }
