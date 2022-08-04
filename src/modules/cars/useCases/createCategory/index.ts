@@ -4,10 +4,10 @@ import { CreatecategoryUseCase } from './createCategoryUseCase';
 
 export default (): CreateCategoryController => {
   const categoriesRepository = new CategoriesRepository();
-const createCategoryUseCase = new CreatecategoryUseCase(categoriesRepository);
-const createCategoryController = new CreateCategoryController(
-  createCategoryUseCase,
-);
+  const createCategoryUseCase = new CreatecategoryUseCase(categoriesRepository);
+  const createCategoryController = new CreateCategoryController(
+    createCategoryUseCase,
+  );
 
   return createCategoryController;
 };

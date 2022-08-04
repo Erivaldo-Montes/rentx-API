@@ -5,13 +5,13 @@ import { ImportCategoriesUseCase } from './importCategoriesUseCase';
 export default (): ImportCategoriesController => {
   const categoriesRepository = new CategoriesRepository();
 
-const importCategoriesUseCase = new ImportCategoriesUseCase(
-  categoriesRepository,
-);
+  const importCategoriesUseCase = new ImportCategoriesUseCase(
+    categoriesRepository,
+  );
 
-const importCategoriesController = new ImportCategoriesController(
-  importCategoriesUseCase,
-);
+  const importCategoriesController = new ImportCategoriesController(
+    importCategoriesUseCase,
+  );
 
   return importCategoriesController;
 };
