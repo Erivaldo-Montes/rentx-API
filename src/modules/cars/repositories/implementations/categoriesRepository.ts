@@ -1,3 +1,6 @@
+import { Repository } from 'typeorm';
+
+import appDataSource from '../../../../database/index';
 import { Category } from '../../entities/category';
 import {
   ICategoryRepository,
@@ -5,13 +8,10 @@ import {
 } from '../ICategoriesRepository';
 
 class CategoriesRepository implements ICategoryRepository {
-  private categories: Category[] = [];
+  private repository: Repository<Category>;
 
-  // eslint-disable-next-line no-use-before-define
-  private static INSTANCE: CategoriesRepository;
-
-  private constructor() {
-    this.categories = [];
+  constructor() {
+    this.repository = appDataSource.getRepository(Category);
   }
 
   public static getInstance() {
