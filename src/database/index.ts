@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 
 const appDataSource: DataSource = new DataSource({
