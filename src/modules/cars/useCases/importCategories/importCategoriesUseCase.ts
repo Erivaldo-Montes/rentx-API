@@ -1,5 +1,6 @@
 import { parse } from 'csv-parse';
 import fs from 'fs';
+import { inject, injectable } from 'tsyringe';
 
 import { CategoriesRepository } from '../../repositories/implementations/categoriesRepository';
 
@@ -8,8 +9,12 @@ interface IImportCategories {
   description: string;
 }
 
+@injectable()
 class ImportCategoriesUseCase {
-  constructor(private categoriesRepository: CategoriesRepository) {}
+  constructor(
+    @inject('CategoriesRepository')
+    private categoriesRepository: CategoriesRepository,
+  ) {}
 
   loadCategories(file: Express.Multer.File): Promise<IImportCategories[]> {
     // transforma uma função que não é assíncrona em uma
@@ -36,6 +41,10 @@ class ImportCategoriesUseCase {
         .on('end', () => {
           // em caso de sucesso retorna.
           resolve(categories);
+          fs.unlink(file.path, err => {
+            if (err) throw err;
+            return null;
+          });
         })
         .on('error', err => {
           // em caso de falha
