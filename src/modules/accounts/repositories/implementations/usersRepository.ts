@@ -12,9 +12,13 @@ class UsersRepository implements IUsersRepository {
     this.repository = appDataSource.getRepository(User);
   }
 
+  async findByEmail(email: string): Promise<User> {
+    const user = await this.repository.findOne({ where: { email } });
+    return user;
+  }
+
   async create({
     name,
-    username,
     email,
     password,
     driver_license,
@@ -22,7 +26,6 @@ class UsersRepository implements IUsersRepository {
     const user = this.repository.create({
       name,
       email,
-      username,
       driver_license,
       password,
     });
