@@ -1,8 +1,8 @@
-import { parse } from 'csv-parse';
-import fs from 'fs';
-import { inject, injectable } from 'tsyringe';
+import { parse } from "csv-parse";
+import fs from "fs";
+import { inject, injectable } from "tsyringe";
 
-import { CategoriesRepository } from '../../repositories/implementations/categoriesRepository';
+import { CategoriesRepository } from "../../repositories/implementations/categoriesRepository";
 
 interface IImportCategories {
   name: string;
@@ -12,7 +12,7 @@ interface IImportCategories {
 @injectable()
 class ImportCategoriesUseCase {
   constructor(
-    @inject('CategoriesRepository')
+    @inject("CategoriesRepository")
     private categoriesRepository: CategoriesRepository,
   ) {}
 
@@ -24,13 +24,13 @@ class ImportCategoriesUseCase {
       const categories: IImportCategories[] = [];
 
       const parseFile = parse({
-        delimiter: ';',
+        delimiter: ";",
       });
 
       stream.pipe(parseFile);
 
       parseFile
-        .on('data', async line => {
+        .on("data", async line => {
           const [name, description] = line;
 
           categories.push({
@@ -38,7 +38,7 @@ class ImportCategoriesUseCase {
             description,
           });
         })
-        .on('end', () => {
+        .on("end", () => {
           // em caso de sucesso retorna.
           resolve(categories);
           fs.unlink(file.path, err => {
@@ -46,7 +46,7 @@ class ImportCategoriesUseCase {
             return null;
           });
         })
-        .on('error', err => {
+        .on("error", err => {
           // em caso de falha
           reject(err);
         });
