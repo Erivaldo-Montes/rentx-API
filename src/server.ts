@@ -4,9 +4,9 @@ import express, { Request, Response, NextFunction } from "express";
 import swaggerUi from "swagger-ui-express";
 
 import { createConnection } from "./database/index";
-import { AppError } from "./error/appError";
+import { AppError } from "./errors/appError";
 import { routes } from "./routes";
-import "./shared/container/index";
+import "@shared/container/index";
 import swaggerFile from "./swagger.json";
 
 const app = express();
@@ -29,7 +29,7 @@ app.use(
       });
     }
 
-    response.status(500).json({
+    return response.status(500).json({
       message: `internal server error ${err.message}`,
     });
   },
