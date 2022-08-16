@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 
-import { AppError } from "../errors/appError";
-import { UsersRepository } from "../modules/accounts/repositories/implementations/usersRepository";
+import { UsersRepository } from "@modules/accounts/infra/typorm/repositories/usersRepository";
+import { AppError } from "@shared/errors/appError";
 
 export async function ensureAutheticate(
   request: Request,

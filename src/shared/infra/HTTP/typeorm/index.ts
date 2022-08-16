@@ -7,8 +7,8 @@ const appDataSource: DataSource = new DataSource({
   username: "postgres",
   password: "postgres",
   database: "postgres",
-  migrations: ["./src/database/migrations/*.ts"],
-  entities: ["./src/modules/**/entities/*.ts"],
+  migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
+  entities: ["./src/modules/**/infra/typeorm/entities/*.ts"],
 });
 
 export function createConnection(host = "database"): Promise<DataSource> {
