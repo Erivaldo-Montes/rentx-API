@@ -1,6 +1,7 @@
 import { Repository } from "typeorm";
 
-import appDataSource from "../../../../../database/index";
+import appDataSource from "@shared/infra/typeorm/index";
+
 import {
   ICategoryRepository,
   ICreateCategoryDTO,
