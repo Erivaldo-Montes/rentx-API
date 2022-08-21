@@ -2,6 +2,7 @@ import { DataSource } from "typeorm";
 
 import { User } from "@modules/accounts/infra/typorm/entities/user";
 import { Car } from "@modules/cars/infra/typeorm/entities/car";
+import { CarImage } from "@modules/cars/infra/typeorm/entities/carImage";
 import { Category } from "@modules/cars/infra/typeorm/entities/category";
 import { Specification } from "@modules/cars/infra/typeorm/entities/specification";
 
@@ -13,7 +14,7 @@ const appDataSource: DataSource = new DataSource({
   password: "postgres",
   database: "postgres",
   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
-  entities: [User, Specification, Car, Category],
+  entities: [User, Specification, Car, Category, CarImage],
 });
 
 export function createConnection(host = "database"): Promise<DataSource> {
