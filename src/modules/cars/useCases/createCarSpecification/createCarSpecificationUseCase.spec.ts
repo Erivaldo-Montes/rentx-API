@@ -18,7 +18,7 @@ describe("Create car specification", () => {
     );
   });
 
-  it("Should be able add a new specification to th car", async () => {
+  it("Should be able add a new specification to the car", async () => {
     const car = await carsRepositoryInMemory.create({
       name: "car1",
       description: "car1 description",
@@ -41,7 +41,9 @@ describe("Create car specification", () => {
       specifications_id,
     });
 
-    expect(specification).toHaveProperty("specifications");
+    console.log(specificationsCars);
+
+    expect(specificationsCars).toHaveProperty("specifications");
     expect(specificationsCars.specifications.length).toBe(1);
   });
 

@@ -31,7 +31,7 @@ class Car {
   fine_amount: number;
 
   @Column()
-  available: true;
+  available: boolean;
 
   @Column()
   brand: string;

@@ -32,14 +32,16 @@ export class CreateRentals1661106634956 implements MigrationInterface {
           {
             name: "end_date",
             type: "timestamp",
+            isNullable: true,
           },
           {
-            name: "expect_return_date",
+            name: "expected_return_date",
             type: "timestamp",
           },
           {
             name: "total",
             type: "numeric",
+            isNullable: true,
           },
           {
             name: "created_at",
@@ -75,10 +77,6 @@ export class CreateRentals1661106634956 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey("rentals", "FKUserRental");
-
-    await queryRunner.dropForeignKey("rentals", "fKCarRental");
-
     await queryRunner.dropTable("rentals");
   }
 }
