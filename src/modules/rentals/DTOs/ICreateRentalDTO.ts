@@ -9,7 +9,7 @@ interface ICreateRentalDTO {
 
   end_date?: Date;
 
-  total: number;
+  total?: number;
 }
 
 export { ICreateRentalDTO };
