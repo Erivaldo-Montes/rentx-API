@@ -16,6 +16,11 @@
         ],
         "summary": "create",
         "description": "create a new category car",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -84,6 +89,11 @@
         ],
         "summary": "import category",
         "description": "upload a new category",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -113,6 +123,11 @@
         ],
         "summary": "create",
         "description": "create specification for a car",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -131,6 +146,119 @@
           }
         }
       }
+    },
+    "/sessions": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "authentication user",
+        "description": "return a authentication token JWT",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "descritption": "sucess"
+          },
+          "400": {
+            "description": "email or password incorrect"
+          }
+        }
+      }
+    },
+    "/car": {
+      "post": {
+        "tags": [
+          "cars"
+        ],
+        "summary": "create car",
+        "description": "admin create a new car",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Car"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "descritption": "created"
+          },
+          "400": {
+            "description": "car alreay exist"
+          }
+        }
+      }
+    },
+    "/cars/images/{id}": {
+      "post": {
+        "tags": [
+          "cars"
+        ],
+        "summary": "upload images",
+        "description": "upload many car images",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "car id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "images": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "created"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -143,6 +271,41 @@
         "description": {
           "type": "string"
         }
+      }
+    },
+    "Car": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "daily_rate": {
+          "type": "number"
+        },
+        "fine_amount": {
+          "type": "number"
+        },
+        "brand": {
+          "type": "string"
+        },
+        "license_plate": {
+          "type": "string"
+        },
+        "category_id": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
