@@ -1,4 +1,5 @@
 import { randomUUID } from "crypto";
+import { resolve } from "path";
 import { inject, injectable } from "tsyringe";
 
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
@@ -39,10 +40,25 @@ class SendForgotPasswordMailUseCase {
       expires_date,
     });
 
+    const templatePath = resolve(
+      __dirname,
+      "..",
+      "..",
+      "views",
+      "email",
+      "forgotPassword.hbs",
+    );
+
+    const variables = {
+      name: user.name,
+      link: `${process.env.FORGOT_EMAIL_URL}${token}`,
+    };
+
     await this.mailProvider.sendMail(
       email,
       "Recuperaçâo de senha",
-      `O link para o recuperação é ${token}`,
+      variables,
+      templatePath,
     );
   }
 }
