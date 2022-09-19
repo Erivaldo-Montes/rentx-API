@@ -4,6 +4,7 @@ import "dotenv/config";
 import express, { Request, Response, NextFunction } from "express";
 import swaggerUi from "swagger-ui-express";
 
+import upload from "@config/upload";
 import { AppError } from "@shared/errors/appError";
 import { createConnection } from "@shared/infra/typeorm/index";
 
