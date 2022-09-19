@@ -20,6 +20,10 @@ createConnection();
 
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
+// procura as imgems de tmp
+app.use("/avatar", express.static(`${upload.tmpFolder}/avatar`));
+app.use("/cars", express.static(`${upload.tmpFolder}/cars`));
+
 app.use(routes);
 
 app.use(
