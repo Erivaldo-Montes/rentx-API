@@ -19,10 +19,11 @@ const appDataSource: DataSource = new DataSource({
   entities: [User, Specification, Car, Category, CarImage, Rental, UserToken],
 });
 
-export function createConnection(host = "database"): Promise<DataSource> {
+export function createConnection(/* host = "database" */): Promise<DataSource> {
   return appDataSource
     .setOptions({
-      host: process.env.NODE_ENV === "test" ? "localhost" : host,
+      // host: process.env.NODE_ENV === "test" ? "localhost" : host,
+
       // NODE_ENV é definido no packege.json
       database: process.env.NODE_ENV === "test" ? "rentx_test" : "postgres",
     })
