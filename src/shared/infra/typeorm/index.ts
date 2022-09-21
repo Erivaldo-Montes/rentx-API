@@ -13,7 +13,7 @@ const appDataSource: DataSource = new DataSource({
   host: "localhost",
   port: 3301,
   username: "postgres",
-  password: "postgres",
+  password: "@Ro0/3pWdhjY",
   database: "postgres",
   migrations: ["./src/shared/infra/typeorm/migrations/*.js"],
   entities: [User, Specification, Car, Category, CarImage, Rental, UserToken],
