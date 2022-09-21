@@ -5,10 +5,10 @@ services:
     image: postgres
     container_name: postgres_rentx
     ports:
-      - 5432:5432
+      - 3301:5432
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD=@Ro0/3pWdhjY
       - POSTGRES_DB=postgres
     volumes:
       - pgdata:/data/postgres
