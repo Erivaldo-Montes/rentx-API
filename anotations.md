@@ -13,3 +13,5 @@
 - nginx
 - habilitar portas http e https
 - pm2
+- router 53
+- cors
