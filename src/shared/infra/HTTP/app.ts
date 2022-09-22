@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import "express-async-errors";
 import "dotenv/config";
+import cors from "cors";
 import express, { Request, Response, NextFunction } from "express";
 import swaggerUi from "swagger-ui-express";
 
@@ -19,6 +20,9 @@ app.use(express.json());
 createConnection();
 
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
+// cors
+app.use(cors());
 
 // procura as imgems de tmp
 app.use("/avatar", express.static(`${upload.tmpFolder}/avatar`));
